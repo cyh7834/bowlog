@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bowlog Account Setting</title>
+    <link th:href="@{~/css/styles.css}" rel="stylesheet" />
+    <link th:href="@{~/css/cover.css}" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body class="text-center">
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header th:replace="fragments.html :: main-nav">
+    </header>
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <div class="row">
+                <h6 class="mb-3 mt-3">프로필 사진</h6>
+            </div>
+            <div class="card text-center">
+                <div id="current-profile-image">
+                    <svg th:if="${#strings.isEmpty(account.profileImage)}" class="rounded"
+                         th:data-jdenticon-value="${account.nickname}" width="125" height="125"></svg>
+                    <img th:if="${!#strings.isEmpty(account.profileImage)}" class="rounded"
+                         th:src="${account.profileImage}"
+                         width="125" height="125" alt="name" th:alt="${account.nickname}"/>
+                </div>
+                <div id="new-profile-image" class="mt-3"></div>
+                <div class="card-body">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="profile-image-file">
+                        <label class="custom-file-label" for="profile-image-file">이미지 선택</label>
+                    </div>
+                    <div id="new-profile-image-control" class="mt-3">
+                        <button type="button" class="btn btn-outline-primary btn-block" id="cut-button">자르기</button>
+                        <button type="button" class="btn btn-outline-success btn-block" id="confirm-button">확인</button>
+                        <button type="button" class="btn btn-outline-warning btn-block" id="reset-button">취소</button>
+                    </div>
+                    <div id="cropped-new-profile-image" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 order-md-1">
+            <form id="profile-form" class="needs-validation" novalidate="" action="#" th:action="@{/settings/profile}" th:object="${account}" method="post">
+                <div class="form-group">
+                    <input id="profileImage" name="profileImage" type="hidden" th:field="*{profileImage}" class="form-control" />
+                </div>
+
+                <div class="row">
+                    <h6 class="mb-3">닉네임</h6>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" th:field="*{nickname}" id="nickname" placeholder="닉네임" minlength="2" maxlength="8" required>
+                        <small class="invalid-feedback">닉네임은 두 글자 이상 여덟 글자 이하여야 합니다.</small>
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}">Nickname Error</small>
+                        <small class="form-text text-danger" th:if="${nicknameError}">이미 존재하는 닉네임입니다.</small>
+                    </div>
+                </div>
+
+                <hr class="mb-3">
+                <div class="row">
+                    <h6 class="mb-3">한 줄 소개</h6>
+                </div>
+
+                <div class="mb-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" th:field="*{bio}" id="bio" placeholder="한 줄 소개" minlength="0" maxlength="30">
+                        <small class="invalid-feedback">자기소개는 30자 이하여야 합니다.</small>
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('bio')}" th:errors="*{bio}">Bio Error</small>
+                    </div>
+                </div>
+
+                <hr class="mb-3">
+                <div class="row">
+                    <h6 class="mb-3">성별</h6>
+                </div>
+
+                <div class="d-block my-3" style="text-align: left">
+                    <div class="custom-control custom-radio">
+                        <input id="men" name="gender" type="radio" class="custom-control-input" value="male"
+                               th:checked="${account.getGender().equals('male')} ? 'checked'">
+                        <label class="custom-control-label" for="men">남성</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="women" name="gender" type="radio" class="custom-control-input" value="female"
+                               th:checked="${account.getGender().equals('female')} ? 'checked'">
+                        <label class="custom-control-label" for="women">여성</label>
+                    </div>
+                </div>
+                <hr class="mb-3">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">확인</button>
+            </form>
+        </div>
+    </div>
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        </div>
+    </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.0/dist/jdenticon.min.js" async
+        integrity="sha384-VngWWnG9GS4jDgsGEUNaoRQtfBGiIKZTiXwm9KpgAeaRn6Y/1tAFiyXqSzqC8Ga/" crossorigin="anonymous"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.9/cropper.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.9/cropper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cropper/1.0.1/jquery-cropper.min.js"></script>
+<script th:replace="fragments.html :: ajax-csrf-header"></script>
+<script th:replace="fragments.html :: form-validation"></script>
+<script type="application/javascript">
+    $(function() {
+        cropper = '';
+        let $confirmBtn = $("#confirm-button");
+        let $resetBtn = $("#reset-button");
+        let $cutBtn = $("#cut-button");
+        let $newProfileImage = $("#new-profile-image");
+        let $currentProfileImage = $("#current-profile-image");
+        let $resultImage = $("#cropped-new-profile-image");
+        let $profileImage = $("#profileImage");
+        var test;
+        $newProfileImage.hide();
+        $cutBtn.hide();
+        $resetBtn.hide();
+        $confirmBtn.hide();
+
+        $("#profile-image-file").change(function(e) {
+            if (e.target.files.length === 1) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    if (e.target.result) {
+                        if (!e.target.result.startsWith("data:image")) {
+                            alert("이미지 파일을 선택하세요.");
+                            return;
+                        }
+
+                        let img = document.createElement("img");
+                        img.id = 'new-profile';
+                        img.src = e.target.result;
+                        img.setAttribute('width', '100%');
+
+                        $newProfileImage.html(img);
+                        $newProfileImage.show();
+                        $currentProfileImage.hide();
+
+                        let $newImage = $(img);
+                        $newImage.cropper({aspectRatio: 1});
+                        cropper = $newImage.data('cropper');
+
+                        $cutBtn.show();
+                        $confirmBtn.hide();
+                        $resetBtn.show();
+                    }
+                };
+
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        $resetBtn.click(function() {
+            $currentProfileImage.show();
+            $newProfileImage.hide();
+            $resultImage.hide();
+            $resetBtn.hide();
+            $cutBtn.hide();
+            $confirmBtn.hide();
+            $profileImage.val('');
+        });
+
+        $cutBtn.click(function () {
+            let dataUrl = cropper.getCroppedCanvas().toDataURL();
+
+            if (dataUrl.length > 1000 * 1024) {
+                alert("이미지 파일이 너무 큽니다. 1024000 보다 작은 파일을 사용하세요. 현재 이미지 사이즈 " + dataUrl.length);
+                return;
+            }
+
+            let newImage = document.createElement("img");
+            newImage.id = "cropped-new-profile-image";
+            newImage.src = dataUrl;
+            newImage.width = 125;
+            $resultImage.html(newImage);
+            $resultImage.show();
+            $confirmBtn.show();
+
+            $confirmBtn.click(function () {
+                $newProfileImage.html(newImage);
+                $cutBtn.hide();
+                $confirmBtn.hide();
+                $profileImage.val(dataUrl);
+            });
+        });
+    });
+</script>
+</body>
+</html>

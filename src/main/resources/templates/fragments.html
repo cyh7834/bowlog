@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<header th:fragment="main-nav" class="masthead mb-auto" id="mainNav">
+    <div class="inner">
+        <h3 class="masthead-brand">BOWLOG</h3>
+        <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" th:href="@{'/'}">Home</a>
+            <a sec:authorize="!isAuthenticated()" class="nav-link js-scroll-trigger" th:href="@{/login}">로그인</a>
+            <a sec:authorize="!isAuthenticated()" class="nav-link js-scroll-trigger" th:href="@{/sign-up}">회원가입</a>
+
+            <a sec:authorize="isAuthenticated()" class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user fa-fw"></i>
+                <span sec:authentication="name">Username</span>
+            </a>
+            <div sec:authorize="isAuthenticated()" class="dropdown-menu dropdown-menu-sm-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item" th:href="@{'/settings/profile'}">프로필 설정</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" th:href="@{'/settings/zone'}">활동 지역 설정</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" th:href="@{'/settings/password'}">비밀번호 설정</a>
+                <div class="dropdown-divider"></div>
+                <form class="form-inline my-2 my-lg-0" action="#" th:action="@{/logout}" method="post">
+                    <button class="dropdown-item" type="submit">로그아웃</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<script type="application/javascript" th:fragment="form-validation">
+    (function () {
+        'use strict';
+
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+
+            // Loop over them and prevent submission
+            Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        }, false)
+    }())
+</script>
+
+<script type="application/javascript" th:inline="javascript" th:fragment="ajax-csrf-header">
+    $(function() {
+        var csrfToken = /*[[${_csrf.token}]]*/ null;
+        var csrfHeader = /*[[${_csrf.headerName}]]*/ null;
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(csrfHeader, csrfToken);
+        });
+    });
+</script>
+</html>
