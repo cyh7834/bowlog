@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Bowlog - Enjoy Bowling Life</title>
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link th:href="@{css/styles.css}" rel="stylesheet" />
-    <link th:href="@{css/cover.css}" rel="stylesheet" />
-</head>
-<body>
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style="max-width: 70em">
-    <header th:replace="fragments.html :: main-nav">
-    </header>
-    <!-- Heading Row-->
-    <div class="row align-items-center my-5">
-        <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://via.placeholder.com/900x400" alt="..."></div>
-        <div class="col-lg-5">
-            <h1 class="font-weight-light">User Nickname</h1>
-            <h5 class="font-weight-light">게시글 <a>5</a></h5>
-            <h5 class="font-weight-light">팔로워 <a>10</a></h5>
-            <h5 class="font-weight-light">팔로우 <a>11</a></h5>
-            <p>User Bio</p>
-            <a class="btn btn-primary" href="#!">Follow</a>
-        </div>
-    </div>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>Bowlog - Enjoy Bowling Life</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link th:href="@{css/styles.css}" rel="stylesheet" />
+        <link th:href="@{css/cover.css}" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style="max-width: 70em">
+            <header th:replace="fragments.html :: main-nav">
+            </header>
+            <!-- Heading Row-->
+            <div class="row align-items-center my-5">
+                <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://via.placeholder.com/900x400" alt="..."></div>
+                <div class="col-lg-5">
+                    <h1 class="font-weight-light">User Nickname</h1>
+                    <h5 class="font-weight-light">게시글 <a>5</a></h5>
+                    <h5 class="font-weight-light">팔로워 <a>10</a></h5>
+                    <h5 class="font-weight-light">팔로우 <a>11</a></h5>
+                    <p>User Bio</p>
+                    <a class="btn btn-primary" href="#!">Follow</a>
+                </div>
+            </div>
 
-    <!-- Content Row-->
-    <div class="row">
-        <div class="col-md-4 mb-5">
-            <div class="card h-100">
-                <img class="card-img-top" src="https://via.placeholder.com/300x200" alt="...">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
+            <!-- Content Row-->
+            <div class="row">
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="https://via.placeholder.com/300x200" alt="...">
+                        <div class="card-body">
+                            <h4 class="card-title">Card title</h4>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
+                        </div>
+                        <div class="card-footer"><a class="btn btn-primary" href="#!">Find Out More!</a></div>
+                    </div>
                 </div>
-                <div class="card-footer"><a class="btn btn-primary" href="#!">Find Out More!</a></div>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="https://via.placeholder.com/300x200" alt="...">
+                        <div class="card-body">
+                            <h4 class="card-title">Card title</h4>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus totam ut praesentium aut.</p>
+                        </div>
+                        <div class="card-footer"><a class="btn btn-primary" href="#!">Find Out More!</a></div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="https://via.placeholder.com/300x200" alt="...">
+                        <div class="card-body">
+                            <h4 class="card-title">Card title</h4>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+                        </div>
+                        <div class="card-footer"><a class="btn btn-primary" href="#!">Find Out More!</a></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-4 mb-5">
-            <div class="card h-100">
-                <img class="card-img-top" src="https://via.placeholder.com/300x200" alt="...">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus totam ut praesentium aut.</p>
-                </div>
-                <div class="card-footer"><a class="btn btn-primary" href="#!">Find Out More!</a></div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-5">
-            <div class="card h-100">
-                <img class="card-img-top" src="https://via.placeholder.com/300x200" alt="...">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                </div>
-                <div class="card-footer"><a class="btn btn-primary" href="#!">Find Out More!</a></div>
-            </div>
-        </div>
-    </div>
-</div>
-</body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    </body>
 </html>
