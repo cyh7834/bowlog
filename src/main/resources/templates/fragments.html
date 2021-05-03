@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <header th:fragment="main-nav" class="masthead mb-auto" id="mainNav">
     <div class="inner">
-        <h3 class="masthead-brand">BOWLOG</h3>
+        <h3 class="masthead-brand"><a href="/">BOWLOG</a></h3>
         <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link active" th:href="@{'/'}">Home</a>
             <a sec:authorize="!isAuthenticated()" class="nav-link js-scroll-trigger" th:href="@{/login}">로그인</a>
