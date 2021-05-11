@@ -2,15 +2,18 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<header th:fragment="main-nav" class="masthead mb-auto" id="mainNav">
+<header th:fragment="main-nav (currentMenu)" class="masthead mb-auto" id="mainNav">
     <div class="inner">
         <h3 class="masthead-brand"><a href="/">BOWLOG</a></h3>
         <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" th:href="@{'/'}">Home</a>
-            <a sec:authorize="!isAuthenticated()" class="nav-link js-scroll-trigger" th:href="@{/login}">로그인</a>
-            <a sec:authorize="!isAuthenticated()" class="nav-link js-scroll-trigger" th:href="@{/sign-up}">회원가입</a>
+            <a class="nav-link" th:classappend="${currentMenu == 'main'}? active" th:href="@{'/'}">Home</a>
+            <a sec:authorize="!isAuthenticated()" class="nav-link js-scroll-trigger"
+               th:classappend="${currentMenu == 'login'}? active" th:href="@{/login}">로그인</a>
+            <a sec:authorize="!isAuthenticated()" class="nav-link js-scroll-trigger"
+               th:classappend="${currentMenu == 'sign-up'}? active" th:href="@{/sign-up}">회원가입</a>
 
-            <a sec:authorize="isAuthenticated()" class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+            <a sec:authorize="isAuthenticated()" class="nav-link dropdown-toggle"
+               th:classappend="${currentMenu == 'settings'}? active" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-user fa-fw"></i>
                 <span sec:authentication="name">Username</span>

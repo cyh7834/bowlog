@@ -14,7 +14,7 @@
     </head>
     <body class="text-center" style="background: url(../assets/img/main.jpg) no-repeat 0 0;background-size:100% 100%;">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <header th:replace="fragments.html :: main-nav">
+        <header th:replace="fragments.html :: main-nav(currentMenu='main')">
         </header>
 
         <main role="main" class="inner cover">

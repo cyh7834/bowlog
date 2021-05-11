@@ -13,7 +13,7 @@
 </head>
 <body class="text-center">
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header th:replace="fragments.html :: main-nav">
+    <header th:replace="fragments.html :: main-nav(currentMenu='login')">
     </header>
 
     <form class="form-signin needs-validation" action="#" th:action="@{/login}" method="post">
