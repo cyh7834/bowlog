@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 
 @Service
 @Transactional
@@ -39,6 +40,7 @@ public class SignUpService {
                 .email(signUpForm.getEmail())
                 .password(passwordEncoder.encode(signUpForm.getPassword()))
                 .gender(signUpForm.getGender())
+                .joinedAt(LocalDateTime.now())
                 .build();
 
         return userRepository.save(account);

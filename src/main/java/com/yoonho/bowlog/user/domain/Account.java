@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -40,17 +39,4 @@ public class Account {
     Set<Zone> zone = new HashSet<>();
 
     private LocalDateTime joinedAt;
-/*
-    private boolean emailVerified;
-
-    private String emailCheckToken;
-
-    private LocalDateTime joinedAt;
-
-    private LocalDateTime emailCheckTokenGeneratedAt;*/
-
-    /*public void setNewEmailCheckToken() {
-        this.emailCheckToken = UUID.randomUUID().toString();
-        this.emailCheckTokenGeneratedAt = LocalDateTime.now();
-    }*/
 }
