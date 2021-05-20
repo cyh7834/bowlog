@@ -1,11 +1,14 @@
 package com.yoonho.bowlog.user.domain;
 
+import com.yoonho.bowlog.post.domain.Post;
 import com.yoonho.bowlog.zone.domain.Zone;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,6 +20,7 @@ import java.util.Set;
 public class Account {
     @Id
     @GeneratedValue
+    @Column(name = "account_id")
     private Long id;
 
     @Column(unique = true)
@@ -37,6 +41,9 @@ public class Account {
 
     @ManyToMany
     Set<Zone> zone = new HashSet<>();
+
+    @OneToMany(mappedBy = "account")
+    private List<Post> post = new ArrayList<>();
 
     private LocalDateTime joinedAt;
 }
