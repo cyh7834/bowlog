@@ -1,5 +1,6 @@
 package com.yoonho.bowlog.user.domain;
 
+import com.yoonho.bowlog.common.domain.CommonDate;
 import com.yoonho.bowlog.post.domain.Post;
 import com.yoonho.bowlog.zone.domain.Zone;
 import lombok.*;
@@ -17,7 +18,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Account {
+public class Account extends CommonDate {
     @Id
     @GeneratedValue
     @Column(name = "account_id")
@@ -43,7 +44,6 @@ public class Account {
     Set<Zone> zone = new HashSet<>();
 
     @OneToMany(mappedBy = "account")
+    @OrderBy("registeredAt desc")
     private List<Post> post = new ArrayList<>();
-
-    private LocalDateTime joinedAt;
 }

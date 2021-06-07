@@ -1,5 +1,6 @@
 package com.yoonho.bowlog.like.domain;
 
+import com.yoonho.bowlog.common.domain.CommonDate;
 import com.yoonho.bowlog.post.domain.Post;
 import com.yoonho.bowlog.reply.domain.Reply;
 import com.yoonho.bowlog.user.domain.Account;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "POST_LIKE")
-public class Like {
+public class Like extends CommonDate {
     @Id
     @GeneratedValue
     private Long id;
