@@ -11,8 +11,8 @@
     <groupId>com.yoonho</groupId>
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>bowlog</name>
-    <description>Bowling SNS</description>
+    <name>piclog</name>
+    <description>Picture SNS</description>
     <properties>
         <java.version>11</java.version>
     </properties>
