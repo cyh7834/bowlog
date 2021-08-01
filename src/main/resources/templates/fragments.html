@@ -12,6 +12,9 @@
             <a sec:authorize="!isAuthenticated()" class="nav-link js-scroll-trigger"
                th:classappend="${currentMenu == 'sign-up'}? active" th:href="@{/sign-up}">회원가입</a>
 
+            <a sec:authorize="isAuthenticated()" class="nav-link js-scroll-trigger"
+               th:classappend="${currentMenu == 'timeline'}? active" th:href="@{/timeline}">Timeline</a>
+
             <a sec:authorize="isAuthenticated()" class="nav-link dropdown-toggle"
                th:classappend="${currentMenu == 'settings'}? active" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
@@ -19,6 +22,8 @@
                 <span sec:authentication="name">Username</span>
             </a>
             <div sec:authorize="isAuthenticated()" class="dropdown-menu dropdown-menu-sm-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item" th:href="@{'/feed'}">내 피드</a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" th:href="@{'/settings/profile'}">프로필 설정</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" th:href="@{'/settings/zone'}">활동 지역 설정</a>
