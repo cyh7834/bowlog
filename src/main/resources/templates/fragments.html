@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <header th:fragment="main-nav (currentMenu)" class="masthead mb-auto" id="mainNav">
     <div class="inner">
-        <h3 class="masthead-brand"><a href="/">BOWLOG</a></h3>
+        <h3 class="masthead-brand"><a href="/">PICLOG</a></h3>
         <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link" th:classappend="${currentMenu == 'main'}? active" th:href="@{'/'}">Home</a>
             <a sec:authorize="!isAuthenticated()" class="nav-link js-scroll-trigger"
