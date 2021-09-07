@@ -41,8 +41,4 @@ public class Account extends CommonDate {
 
     @ManyToMany
     Set<Zone> zone = new HashSet<>();
-
-    @OneToMany(mappedBy = "account")
-    @OrderBy("registeredAt desc")
-    private List<Post> post = new ArrayList<>();
 }
